@@ -1,5 +1,8 @@
-# Python Starter
+# QuikTok
 
-Quickly get started with [Python](https://www.python.org/) using this starter! 
+Crowded city, lonely people. Get your small talk through QuikTok!
 
-- If you want to upgrade Python, you can change the image in the [Dockerfile](./.devcontainer/Dockerfile).
+- Join the person / group near you!
+- Host a open conversation with your own topic!
+
+- Developed with Flask and MongoDB Atlas.
