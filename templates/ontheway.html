@@ -1,0 +1,96 @@
+{% extends "base.html" %} {% block title %} On The Way {% endblock %} {% block
+content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='ontheway.css') }}"
+/>
+
+<div class="container" style="background-color: #49087e">
+  <h1>On The Way to {{ talk_title }}</h1>
+
+  <div>
+    <label for="message">Update Message:</label>
+    <input type="text" id="message" />
+    <button id="update-msg">Update Message</button>
+  </div>
+
+  <div>
+    <button id="attendee-arrive">Mark as Arrived</button>
+    <button id="attendee-cancel">Cancel Attendance</button>
+  </div>
+</div>
+
+<!-- Script -->
+<script>
+  document.getElementById("update-msg").addEventListener("click", () => {
+    // Get userid from query params
+    const params = new URLSearchParams(window.location.search);
+    const user_id = params.get("user_id");
+    const message = document.getElementById("message").value;
+
+    fetch("/update-message", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: user_id,
+        message: message,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Update Message Success:", data);
+        alert("Message updated successfully!");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("An error occurred while updating the message.");
+      });
+  });
+
+  document.getElementById("attendee-arrive").addEventListener("click", () => {
+    // Get userid from query params
+    const params = new URLSearchParams(window.location.search);
+    const user_id = params.get("user_id");
+    fetch("/attendee-arrive", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user_id: user_id }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Attendee Arrived:", data);
+        alert("Marked as arrived successfully!");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("An error occurred while marking arrival.");
+      });
+  });
+
+  document.getElementById("attendee-cancel").addEventListener("click", () => {
+    // Get userid from query params
+    const params = new URLSearchParams(window.location.search);
+    const user_id = params.get("user_id");
+    fetch("/attendee-cancel", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user_id: user_id }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Attendee Canceled:", data);
+        alert("Attendance canceled successfully!");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("An error occurred while canceling attendance.");
+      });
+  });
+</script>
+{% endblock %}
