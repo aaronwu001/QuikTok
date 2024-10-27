@@ -1,8 +1,8 @@
 # QuikTok
 
-Crowded city, lonely people. Get your small talk through QuikTok!
+Crowded city, lonely people. Talk what you want with people few steps away... NOW!
 
-- Join the person / group near you!
-- Host a open conversation with your own topic!
+- Connect with nearby individuals or groups.
+- Start open conversations on your chosen topics.
 
-- Developed with Flask and MongoDB Atlas.
+- Powered by Flask and MongoDB Atlas.
